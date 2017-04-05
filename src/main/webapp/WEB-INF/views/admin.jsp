@@ -20,11 +20,16 @@
 <body>
 <div class="container">
     <c:if test="${pageContext.request.userPrincipal.name != null}">
+
         <form id="logoutForm" method="post" action="${contextPath}/logout">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
-        <h2>Admin Page ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a>
+
+        <h2 class="h2 center-block">Admin Page ${pageContext.request.userPrincipal.name}
+            | <a onclick="document.forms['logoutForm'].submit()">Logout</a>
         </h2>
+            <a href="${contextPath}/books" class="btn btn btn-success center-block">Books</a>
+            <a href="${contextPath}/welcome" class="btn btn btn-info center-block">Log out with admin panel</a>
     </c:if>
 </div>
 

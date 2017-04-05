@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -43,36 +44,29 @@ public class BookController {
         return "redirect:/books";
     }
 
-//    @RequestMapping(value = "/books/add", method = RequestMethod.POST)
-//    public String addBook(@ModelAttribute("book") Book book){
-//        if(book.getId() == 0){
-//            this.bookService.addBook(book);
-//        }else {
-//            this.bookService.updateBook(book);
-//        }
-//
-//        return "redirect:/books";
-//    }
+    @RequestMapping(value = "/delete/{id}")
+    public String deleteBook(@PathVariable("id") int id){
 
-//    @RequestMapping(value = "/remove/{id}")
-//    public String removeBook(@PathVariable("id") int id){
-//        this.bookService.removeBook(id);
-//
-//        return "redirect:/books";
-//    }
-//
-//    @RequestMapping(value = "edit/{id}")
-//    public String editBook(@PathVariable("id") int id, Model model){
-//        model.addAttribute("book", this.bookService.getBookById(id));
-//        model.addAttribute("listBooks", this.bookService.listBooks());
-//
-//        return "books";
-//    }
+        this.bookService.removeBook(id);
 
-//    @RequestMapping(value = "book-info/{id}")
-//    public String bookData(@PathVariable("id") int id, Model model){
-//        model.addAttribute("book", this.bookService.getBookById(id));
-//
-//        return "create-book";
-//    }
+        return "redirect:/books";
+    }
+
+    @RequestMapping(value = "/create-book/edit-book", method = RequestMethod.GET)
+    public String editBook(Model model){
+        model.addAttribute("bookEditForm", new Book());
+
+        return "edit-book";
+    }
+
+    @RequestMapping(value = "/create-book/edit-book", method = RequestMethod.POST)
+    public String editBook(@ModelAttribute("bookEditForm") Book book){
+
+        if(book != null){
+            Book bookEdit = this.bookService.getBookById(book.getId());
+            this.bookService.updateBook(bookEdit);
+        }
+
+        return "redirect:/books";
+    }
 }

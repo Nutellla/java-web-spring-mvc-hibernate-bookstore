@@ -17,6 +17,8 @@
 
     <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
     <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
+    <link href="${contextPath}/resources/css/login-style.css" rel="stylesheet">
+    <link href="${contextPath}/resources/css/for-books.css" rel="stylesheet">
 
 
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -26,30 +28,39 @@
 <div class="container">
     <form:form method="POST" modelAttribute="bookForm" class="form-signin">
         <h2 class="form-signin-heading">Create book</h2>
-
+        <br>
+        <br>
         <spring:bind path="bookTitle">
             <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="bookTitle" class="form-control" placeholder="Book Title" autofocus="true"/>
+                <label for="inputTitle">Book Title</label>
+
+                <form:input id="inputTitle" type="text" path="bookTitle" class="form-control" placeholder="Book Title" autofocus="true"/>
                 <form:errors path="bookTitle"/>
             </div>
         </spring:bind>
 
         <spring:bind path="bookAuthor">
             <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="bookAuthor" class="form-control" placeholder="Book Author" autofocus="true"/>
+                <label for="inputAuthor">Book Author</label>
+
+                <form:input id="inputAuthor" type="text" path="bookAuthor" class="form-control" placeholder="Book Author" autofocus="true"/>
                 <form:errors path="bookAuthor"/>
             </div>
         </spring:bind>
 
         <spring:bind path="price">
             <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:input type="text" path="price" class="form-control" placeholder="Book Price" autofocus="true"/>
+                <label for="inputPrice">Book Price</label>
+
+                <form:input id="inputPrice" type="text" path="price" class="form-control" placeholder="Book Price" autofocus="true"/>
                 <form:errors path="price"/>
             </div>
         </spring:bind>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Create</button>
+        <button class="btn btn-lg btn-warning btn-block" type="submit">Create</button>
+        <br>
     </form:form>
+    <h3><a href="${contextPath}/books" class="btn btn btn-danger">List Books</a></h3>
 </div>
 
 <!-- /container -->
