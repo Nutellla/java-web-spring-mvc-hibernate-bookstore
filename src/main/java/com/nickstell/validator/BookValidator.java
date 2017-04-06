@@ -3,6 +3,7 @@ package com.nickstell.validator;
 import com.nickstell.model.Book;
 import com.nickstell.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
@@ -23,7 +24,7 @@ public class BookValidator implements Validator {
     public void validate(Object o, Errors errors) {
         Book book = (Book) o;
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "bookTitle", "Required");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "Size.userForm.username", "Required");
         if (book.getBookTitle().length() < 8 || book.getBookTitle().length() > 32) {
             errors.rejectValue("bookTitle", "Size.bookForm.bookTitle");
         }

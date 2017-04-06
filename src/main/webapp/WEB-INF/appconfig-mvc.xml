@@ -8,11 +8,7 @@
     <mvc:resources mapping="/resources/**" location="/resources/"/>
 
     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-        <property name="basenames">
-            <list >
-                <value>classpath:validation.properties</value>
-            </list>
-        </property>
+        <property name="basenames" value="validation"/>
     </bean>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

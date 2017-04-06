@@ -36,7 +36,7 @@ public class BookController {
     @RequestMapping(value = "/create-book", method = RequestMethod.POST)
     public String createBook(@ModelAttribute("bookForm") Book bookForm, BindingResult bindingResult, Model model) {
 
-       // bookValidator.validate(bookForm, bindingResult);
+        //bookValidator.validate(bookForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
             return "/create-book";
