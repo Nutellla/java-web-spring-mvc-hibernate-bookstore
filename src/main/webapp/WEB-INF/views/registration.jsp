@@ -28,7 +28,6 @@
 <body>
 
 <div class="container">
-
     <form:form method="POST" modelAttribute="userForm" class="form-signin">
         <h2 class="form-signin-heading">Create your account</h2>
         <br>

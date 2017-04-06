@@ -44,4 +44,9 @@ public class BookServiceImpl implements BookService {
     public List<Book> listBooks() {
         return this.bookDao.findAll();
     }
+
+    @Override
+    public Book findByBookTitle(String bookTitle) {
+        return this.bookDao.findByBookTitle(bookTitle);
+    }
 }

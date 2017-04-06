@@ -33,7 +33,6 @@
         <spring:bind path="bookTitle">
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <label for="inputTitle">Book Title</label>
-
                 <form:input id="inputTitle" type="text" path="bookTitle" class="form-control" placeholder="Book Title" autofocus="true"/>
                 <form:errors path="bookTitle"/>
             </div>
@@ -42,7 +41,6 @@
         <spring:bind path="bookAuthor">
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <label for="inputAuthor">Book Author</label>
-
                 <form:input id="inputAuthor" type="text" path="bookAuthor" class="form-control" placeholder="Book Author" autofocus="true"/>
                 <form:errors path="bookAuthor"/>
             </div>
@@ -51,7 +49,6 @@
         <spring:bind path="price">
             <div class="form-group ${status.error ? 'has-error' : ''}">
                 <label for="inputPrice">Book Price</label>
-
                 <form:input id="inputPrice" type="text" path="price" class="form-control" placeholder="Book Price" autofocus="true"/>
                 <form:errors path="price"/>
             </div>

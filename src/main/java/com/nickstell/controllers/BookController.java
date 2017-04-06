@@ -2,14 +2,12 @@ package com.nickstell.controllers;
 
 import com.nickstell.model.Book;
 import com.nickstell.services.BookService;
+import com.nickstell.validator.BookValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class BookController {
@@ -17,26 +15,31 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
-    @RequestMapping(value = "books", method = RequestMethod.GET)
+    @Autowired
+    private BookValidator bookValidator;
+
+    @RequestMapping(value = "/books", method = RequestMethod.GET)
     public String listBooks(Model model){
         model.addAttribute("book", new Book());
         model.addAttribute("listBooks", this.bookService.listBooks());
 
-        return "books";
+        return "/books";
     }
 
     @RequestMapping(value = "/create-book", method = RequestMethod.GET)
     public String createBook(Model model){
         model.addAttribute("bookForm", new Book());
 
-        return "create-book";
+        return "/create-book";
     }
 
     @RequestMapping(value = "/create-book", method = RequestMethod.POST)
     public String createBook(@ModelAttribute("bookForm") Book bookForm, BindingResult bindingResult, Model model) {
 
+       // bookValidator.validate(bookForm, bindingResult);
+
         if (bindingResult.hasErrors()) {
-            return "create-book";
+            return "/create-book";
         }
 
         this.bookService.addBook(bookForm);
@@ -58,14 +61,16 @@ public class BookController {
         Book bookEditForm = this.bookService.getBookById(id);
         model.addAttribute("bookEditForm", bookEditForm);
 
-        return "edit-book";
+        return "/edit-book";
     }
 
     @RequestMapping(value = "/books/edit-book/{id}", method = RequestMethod.POST)
-    public String editBook(@ModelAttribute("bookEditForm") Book bookEditForm, @PathVariable("id") Long id, BindingResult bindingResult){
+    public String editBook(@ModelAttribute("bookEditForm") Book bookEditForm,@PathVariable(value = "id") Long id, BindingResult bindingResult){
+
+       // bookValidator.validate(bookEditForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
-            return "books";
+            return "/books";
         }
 
         this.bookService.updateBook(bookEditForm);
