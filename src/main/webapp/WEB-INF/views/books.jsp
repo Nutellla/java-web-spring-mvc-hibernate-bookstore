@@ -52,8 +52,8 @@
                 <td>${book.bookAuthor}</td>
                 <td>${book.price}</td>
                 <td class="text-center">
-                    <a href="<c:url value='${contextPath}/edit/${book.id}'/>" class='btn btn-info btn-xs'>Edit</a>
-                    <a href="<c:url value='${contextPath}/delete/${book.id}'/>" class="btn btn-danger btn-xs"> Delete</a>
+                    <a href="<c:url value="${contextPath}/books/edit-book/${book.id}"/>" class="btn btn-info btn-xs">Edit</a>
+                    <a href="<c:url value="${contextPath}/books/delete/${book.id}"/>" class="btn btn-danger btn-xs"> Delete</a>
                 </td>
             </tr>
             </c:forEach>

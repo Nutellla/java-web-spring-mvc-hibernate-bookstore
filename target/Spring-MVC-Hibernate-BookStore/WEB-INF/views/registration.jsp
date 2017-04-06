@@ -65,7 +65,7 @@
         <button class="btn btn-lg btn-success btn-block" type="submit">Register</button>
     </form:form>
 
-    <h3>Please <a href="${contextPath}/login" class="btn-warning">Log In</a></h3>
+    <h3>Please <a href="${contextPath}/login">Log In</a></h3>
 
 </div>
 <!-- /container -->

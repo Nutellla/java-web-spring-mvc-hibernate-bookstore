@@ -24,23 +24,19 @@ public class BookServiceImpl implements BookService {
     @Override
     @Transactional
     public void updateBook(Book book) {
-        //String s = "";
-       // s += book.getId();
-        Book bookNew = this.bookDao.getOne(book.getId());
-
-        this.bookDao.save(bookNew);
+        this.bookDao.save(book);
     }
 
     @Override
     @Transactional
-    public void removeBook(int id) {
+    public void removeBook(Long id) {
         this.bookDao.delete(id);
     }
 
     @Override
     @Transactional
-    public Book getBookById(int id) {
-        return this.bookDao.getOne(id);
+    public Book getBookById(Long id) {
+        return this.bookDao.findOne(id);
     }
 
     @Override

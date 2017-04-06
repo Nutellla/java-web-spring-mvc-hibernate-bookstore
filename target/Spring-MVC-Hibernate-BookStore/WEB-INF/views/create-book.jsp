@@ -60,7 +60,7 @@
         <button class="btn btn-lg btn-warning btn-block" type="submit">Create</button>
         <br>
     </form:form>
-    <h3><a href="${contextPath}/books" class="btn btn btn-success">List Books</a></h3>
+    <h3><a href="${contextPath}/books" class="btn btn btn-danger">List Books</a></h3>
 </div>
 
 <!-- /container -->

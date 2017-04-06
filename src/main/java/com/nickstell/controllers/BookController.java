@@ -33,7 +33,7 @@ public class BookController {
     }
 
     @RequestMapping(value = "/create-book", method = RequestMethod.POST)
-    public String registration(@ModelAttribute("bookForm") Book bookForm, BindingResult bindingResult, Model model) {
+    public String createBook(@ModelAttribute("bookForm") Book bookForm, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             return "create-book";
@@ -44,28 +44,31 @@ public class BookController {
         return "redirect:/books";
     }
 
-    @RequestMapping(value = "/delete/{id}")
-    public String deleteBook(@PathVariable("id") int id){
+    @RequestMapping(value = "//books/delete/{id}")
+    public String deleteBook(@PathVariable("id") Long id){
 
         this.bookService.removeBook(id);
 
         return "redirect:/books";
     }
 
-    @RequestMapping(value = "/create-book/edit-book", method = RequestMethod.GET)
-    public String editBook(Model model){
-        model.addAttribute("bookEditForm", new Book());
+    @RequestMapping(value = "/books/edit-book/{id}", method = RequestMethod.GET)
+    public String editBook(@PathVariable("id") Long id, Model model){
+
+        Book bookEditForm = this.bookService.getBookById(id);
+        model.addAttribute("bookEditForm", bookEditForm);
 
         return "edit-book";
     }
 
-    @RequestMapping(value = "/create-book/edit-book", method = RequestMethod.POST)
-    public String editBook(@ModelAttribute("bookEditForm") Book book){
+    @RequestMapping(value = "/books/edit-book/{id}", method = RequestMethod.POST)
+    public String editBook(@ModelAttribute("bookEditForm") Book bookEditForm, @PathVariable("id") Long id, BindingResult bindingResult){
 
-        if(book != null){
-            Book bookEdit = this.bookService.getBookById(book.getId());
-            this.bookService.updateBook(bookEdit);
+        if (bindingResult.hasErrors()) {
+            return "books";
         }
+
+        this.bookService.updateBook(bookEditForm);
 
         return "redirect:/books";
     }
